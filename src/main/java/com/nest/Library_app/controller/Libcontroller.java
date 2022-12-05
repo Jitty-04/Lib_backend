@@ -15,6 +15,11 @@ public class Libcontroller {
     {
         return "welcome to book entry page";
     }
+    @PostMapping("/booksearch")
+    public String BookSearch()
+    {
+        return "welcome to book search page";
+    }
 
 
 
