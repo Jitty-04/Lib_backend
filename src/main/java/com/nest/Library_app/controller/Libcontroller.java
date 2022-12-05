@@ -41,6 +41,11 @@ public class Libcontroller {
     {
         return "welcome to book issue page";
     }
+    @PostMapping("/userregistration")
+    public String Userreg()
+    {
+        return "welcome to user registration page";
+    }
 
 
 
