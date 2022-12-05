@@ -36,6 +36,11 @@ public class Libcontroller {
     {
         return "welcome to view book  page";
     }
+    @PostMapping("/issue")
+    public String BookIssue()
+    {
+        return "welcome to book issue page";
+    }
 
 
 
