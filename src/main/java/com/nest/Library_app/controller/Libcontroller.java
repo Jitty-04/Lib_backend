@@ -25,6 +25,12 @@ public class Libcontroller {
     {
         return "welcome to book delete page";
     }
+    @PostMapping("/bookedit")
+    public String BookEdit()
+    {
+        return "welcome to book edit page";
+    }
+
 
 
 
