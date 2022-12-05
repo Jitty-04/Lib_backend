@@ -1,5 +1,6 @@
 package com.nest.Library_app.controller;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,25 +11,30 @@ public class Libcontroller {
         {
             return "welcome to admin login page";
         }
-    @PostMapping("/bookentry")
+    @PostMapping("/entry")
     public String BookEntry()
     {
         return "welcome to book entry page";
     }
-    @PostMapping("/booksearch")
+    @PostMapping("/search")
     public String BookSearch()
     {
         return "welcome to book search page";
     }
-    @PostMapping("/bookdelete")
+    @PostMapping("/delete")
     public String BookDelete()
     {
         return "welcome to book delete page";
     }
-    @PostMapping("/bookedit")
+    @PostMapping("/edit")
     public String BookEdit()
     {
         return "welcome to book edit page";
+    }
+    @GetMapping("/view")
+    public String BookView()
+    {
+        return "welcome to view book  page";
     }
 
 
