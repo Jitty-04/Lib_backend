@@ -10,6 +10,12 @@ public class Libcontroller {
         {
             return "welcome to admin login page";
         }
+    @PostMapping("/bookentry")
+    public String BookEntry()
+    {
+        return "welcome to book entry page";
+    }
+
 
 
 }
