@@ -1,25 +1,42 @@
 package com.nest.Library_app.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.nest.Library_app.dao.LibraryDao;
+import com.nest.Library_app.model.Library;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 public class Libcontroller {
-    @PostMapping("/")
-    public String Adminlogin()
-        {
-            return "welcome to admin login page";
-        }
-    @PostMapping("/entry")
-    public String BookEntry()
-    {
-        return "welcome to book entry page";
+   @Autowired
+   private LibraryDao dao;
+    @CrossOrigin(origins = "*")
+    @PostMapping(path="/add",consumes = "application/json",produces = "application/json")
+    public Map<String,String> AddBook(@RequestBody Library l) {
+        System.out.println(l.getName().toString());
+        System.out.println(l.getAuthor().toString());
+        System.out.println(l.getDescription().toString());
+        System.out.println(l.getPublisher().toString());
+        System.out.println(l.getLanguage().toString());
+        System.out.println(l.getDistributor().toString());
+        System.out.println(l.getYear());
+        System.out.println(l.getPrice());
+        System.out.println(l.getImage().toString());
+        dao.save(l);
+        HashMap<String, String> map = new HashMap<>();
+        map.put("status", "success");
+        return map;
     }
-    @PostMapping("/search")
-    public String BookSearch()
+    @CrossOrigin(origins = "*")
+    @PostMapping(path = "/search",consumes ="application/json",produces ="application/json")
+    public List<Library> SearchBook(@RequestBody Library l)
     {
-        return "welcome to book search page";
+        String name= l.getName().toString();
+        System.out.println(name);
+        return (List<Library>) dao.SearchBook(l.getName());
     }
     @PostMapping("/delete")
     public String BookDelete()
@@ -31,10 +48,10 @@ public class Libcontroller {
     {
         return "welcome to book edit page";
     }
-    @GetMapping("/view")
-    public String BookView()
-    {
-        return "welcome to view book  page";
+    @CrossOrigin(origins = "*")
+    @GetMapping(path="/viewall")
+    public List<Library> ViewAllBooks(){
+        return (List<Library>) dao.findAll();
     }
     @PostMapping("/issue")
     public String BookIssue()
