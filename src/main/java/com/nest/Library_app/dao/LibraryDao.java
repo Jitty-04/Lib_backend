@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface LibraryDao extends CrudRepository<Library,Integer> {
-    @Query(value = "SELECT `id`, `author`, `description`, `distributor`, `image`, `language`, `name`, `price`, `publisher`, `year` FROM `library` WHERE `name`=:name",nativeQuery = true)
+    @Query(value = "SELECT `id`, `author`, `description`, `distributor`, `image`, `language`, `name`, `price`, `publisher`, `year` FROM `library` WHERE `name`LIKE %:name%",nativeQuery = true)
     List<Library> SearchBook(@Param("name") String name);
 @Modifying
     @Transactional
