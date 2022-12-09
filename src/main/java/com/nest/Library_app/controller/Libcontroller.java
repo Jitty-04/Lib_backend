@@ -38,10 +38,16 @@ public class Libcontroller {
         System.out.println(name);
         return (List<Library>) dao.SearchBook(l.getName());
     }
-    @PostMapping("/delete")
-    public String BookDelete()
-    {
-        return "welcome to book delete page";
+    @CrossOrigin(origins = "*")
+    @PostMapping(path = "/delete",consumes = "application/json",produces = "application/json")
+    public HashMap<String,String> DeleteBook(@RequestBody Library l) {
+        String id=String.valueOf(l.getId());
+        System.out.println(id);
+        dao.DeleteBook(l.getId());
+        HashMap<String,String> map = new HashMap<>();
+        map.put("status","success");
+        return map;
+
     }
     @PostMapping("/edit")
     public String BookEdit()
